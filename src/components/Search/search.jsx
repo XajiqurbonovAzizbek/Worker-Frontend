@@ -407,7 +407,6 @@ export default function Search() {
     const activeItem=(index)=>{
         let newList=list.map((item,itemIndex)=>{
             if(index === itemIndex && !item?.active){
-                console.log("!item.active");
                 setIsListItem(true)
                 return {...item,active:true}
             }
@@ -436,16 +435,10 @@ export default function Search() {
     const searchWorker=()=>{
         workersApi().then((res)=>{
             if(res?.data){
-                let resultWorkers=res.data.data.filter((worker)=>{
-                    if(form?.Qayerga?.geolocation?.latitude){
-                        if(worker.geolocation.latitude - form?.Qayerga?.geolocation?.latitude  < 0.01){
-                            return worker
-                        }
-                    }
-                    else{
-                        return worker
-                    }
-                })
+                let resultWorkers=res.data.data.filter((worker)=>form?.Qayerga?.geolocation?.latitude?
+                        (worker.geolocation.latitude - form?.Qayerga?.geolocation?.latitude)  < 0.01 && worker
+                        : worker
+                )
                 setWorkerResult(resultWorkers)
             }
         })
@@ -547,7 +540,7 @@ export default function Search() {
                             onMouseLeave={()=>{hoverItem("a")}}
                             >
                             <div className='d-flex gap-2 align-items-center'>
-                                <img src={require("../../assets/img/worker.png")} width="30rem" height="30rem"/>
+                                <img src={require("../../assets/img/worker.png")} width="30rem" height="30rem" alt='profile'/>
                                 <div className='d-flex flex-column'>
                                     <div>{`${worker.firstname}.${worker.lastname.slice(0,1)}`}</div>
                                     <div className='d-flex gap-2' style={{fontSize:"0.7rem"}}>
