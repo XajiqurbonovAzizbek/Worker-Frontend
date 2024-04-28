@@ -29,7 +29,7 @@ const Map = () => {
                     }
                 }
                 const map = new window.ymaps.Map('map', {
-                    center: [41.311158, 69.279737],
+                    center: [55.76, 37.64],
                     zoom: 10
                 });
                 const mapHeight = map.container.getSize()[1];
@@ -55,7 +55,7 @@ const Map = () => {
                     }
                 });
 
-                map.geoObjects.add(new window.ymaps.Placemark([41.311158, 69.279737],  {
+                map.geoObjects.add(new window.ymaps.Placemark([55.76, 37.64],  {
                     hintContent: 'A custom placemark icon',
                     balloonContent: 'This is a nice place',
                   },{

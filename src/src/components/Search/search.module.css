@@ -1,11 +1,6 @@
 .scrollList{
     overflow-y: scroll;
-    list-style-type: none;
-    padding: 0;
     &::-webkit-scrollbar {
         display: none;
     }
-}
-input[type="radio"]{
-    display: none;
 }
