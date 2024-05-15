@@ -614,7 +614,7 @@ export default function Search() {
               (item?.title === "Soatbay" && item.active) ?
                 <div key={index}>
                     <div className="py-2 d-flex gap-2 flex-column justify-content-center align-items-center">
-                      <p className="text-secondary m-0">Ishbay kalkulatori</p>
+                      <p className="text-secondary m-0">Soatbay kalkulatori</p>
                       <div className="w-100 d-flex align-items-center justify-content-around flex-row gap-2  px-3">
                         <input
                           className="card py-1 p-2 rounded-3 text-center d-flex justify-content-center align-items-center"
