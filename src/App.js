@@ -1,19 +1,23 @@
-import { Route, Routes } from "react-router-dom";
-import { Header, MakeOwner, Map } from "./components";
-import React from "react";
-const UserPage=React.lazy(()=>import("./pages/userPage/userPage"))
+import React, { Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom';
+import Authcontext from './contexts/AuthContext/Authcontext';
+import {SignInPage, SearchWorkerPage, SignUpPage, RegisterPage} from './pages/index';
+import { AppLayout } from './layouts';
 function App() {
   return (
-    <div className="App vw-100 vh-100 overflow-hidden position-relative">
-        <Map/>
-        <div className="w-100 p-1 container col h-100">
-          <Header/>
-            <Routes>
-              <Route path="/" element={<React.Suspense><UserPage/></React.Suspense>}/>
-            </Routes>
-          <MakeOwner/>
-        </div>
-    </div>
+    <Authcontext>
+      <Routes>
+        <Route path="/" element={<Suspense><AppLayout/></Suspense>}>
+          <Route index  element={<Suspense><SearchWorkerPage/></Suspense>}/>
+        </Route>
+        <Route path='/signIn' element={<Suspense><SignInPage/></Suspense>}>
+          <Route path='register' element={<Suspense><RegisterPage/></Suspense>}/>
+        </Route>
+        <Route path='/signUp' element={<Suspense><SignUpPage/></Suspense>}>
+          <Route path='register' element={<Suspense><RegisterPage/></Suspense>}/>
+        </Route>
+      </Routes>
+    </Authcontext>
   );
 }
 
